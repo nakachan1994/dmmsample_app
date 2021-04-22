@@ -3,12 +3,14 @@
 require 'rails_helper'
 
 describe '投稿のテスト' do
-  let!(:list){create(:list,title:'hoge',body:'body')}
+  let!(:list) { create(:list, title: 'hoge', body: 'body') }
+
   describe 'トップ画面（top_path)のテスト' do
     before do
       visit top_path
     end
-    context'表示の確認' do
+
+    context '表示の確認' do
       it 'トップ画面(top_path)に「ここはTopページです」が表示されているか' do
         expect(page).to have_content 'ここはTopページです'
       end
@@ -33,8 +35,8 @@ describe '投稿のテスト' do
 
     context '投稿処理のテスト' do
       it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'list[title]',with:Faker::Lorem.characters(number:5)
-        fill_in 'list[body]',with:Faker::Lorem.characters(number:20)
+        fill_in 'list[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'list[body]', with: Faker::Lorem.characters(number: 20)
         click_button '投稿'
         expect(page).to have_current_path todolists_path(List.last)
       end
@@ -57,6 +59,7 @@ describe '投稿のテスト' do
     before do
       visit todolist_path(list)
     end
+
     context '表示のテスト' do
       it '削除リンクが存在しているか' do
         expect(page).to have_link'削除'
@@ -73,9 +76,10 @@ describe '投稿のテスト' do
         expect(current_path).to eq('/todolists/' + list.id.to_s + '/edit')
       end
     end
+
     context 'list削除のテスト' do
       it 'listの削除' do
-        expect{list.destroy}.to change{List.count}.by(-1)
+        expect { list.destroy }.to change(List, :count).by(-1)
       end
     end
   end
@@ -84,10 +88,11 @@ describe '投稿のテスト' do
     before do
       visit edit_todolist_path(list)
     end
+
     context '表示の確認' do
       it '編集前のタイトルと本文がフォームに表示（セット）されている' do
-        expect(page).to have_field 'list[title]',with:list.title
-        expect(page).to have_field 'list[body]',eith:list.body
+        expect(page).to have_field 'list[title]', with: list.title
+        expect(page).to have_field 'list[body]', eith: list.body
       end
       it '保存ボタンが表示される' do
         expect(page).to have_button'保存'
@@ -96,9 +101,9 @@ describe '投稿のテスト' do
 
     cpntext '更新処理に関するテスト' do
       it '更新後のリダイレクト先は正しいか' do
-        fill_in 'list[title]',with:Faker::Lorem.characters(number:5)
-        fill_in 'list[body]',with:Foker::Lorem.characters(number:20)
-        click_button'保存'
+        fill_in 'list[title]', with: Faker::Lorem.characters(number: 5)
+        fill_in 'list[body]', with: Foker::Lorem.characters(number: 20)
+        click_button '保存'
         expect(page).to have_current_path todolist_path(list)
       end
     end
