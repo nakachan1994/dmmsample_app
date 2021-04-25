@@ -6,7 +6,7 @@ class TodolistsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      redirect_to todolist_path(@list.id)
+      redirect_to todolist_path(@list.id), notice: 'TodoListを作成しました'
     else
       render :new
     end
@@ -26,9 +26,12 @@ class TodolistsController < ApplicationController
   end
 
   def update
-    list = List.find(params[:id])
-    list.update(list_params)
-    redirect_to todolist_path(list.id)
+    @list = List.find(params[:id])
+    if @list.update(list_params)
+      redirect_to todolist_path(@list.id), notice: 'TodoListを変更しました'
+    else
+      render :edit
+    end
   end
 
   def destroy
