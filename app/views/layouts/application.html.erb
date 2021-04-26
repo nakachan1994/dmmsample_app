@@ -11,24 +11,34 @@
   </head>
 
   <body>
-    <header>
-      <h1 class ="headline">All Lists</h1>
+    <header class="bg-light">
+      <nav class="navbar navbar-light">
+        <div class="container">
+          <div class="row">
+            <h1 class ="">All Lists</h1>
+          </div>
+          <div class="row">
+            <ul class ="nav-list">
+            <li class ="navbar-brand">
+              <%= link_to root_path,  class: 'nav-link text-dark' do %>
+                <i class="fas fa-desktop">Top</i>
+              <% end %>
+            </li>
+            <li class="navbar-brand">
+              <%= link_to todolists_path,  class: 'nav-link text-dark' do %>
+                <i class="fas fa-clipboard-list">Todolist</i>
+              <% end %>
+            </li>
+            <li class ="navbar-brand">
+              <%= link_to new_todolist_path,  class: 'nav-link text-dark' do %>
+                <i class="fas fa-folder-plus">New List</i>
+              <% end %>
+            </li>
+          </ul>
+          </div>
+        </nav>
+      </div>
     </header>
-
-    <nav>
-      <ul class ="nav-list">
-        <li class ="nav-list-item">
-          <%= link_to "Top",root_path %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to "TodoLists",todolists_path %>
-        </li>
-        <li class ="nav-list-item">
-          <%= link_to "New List",new_todolist_path %>
-        </li>
-      </ul>
-    </nav>
-
     <main>
       <%= yield %>
     </main>
