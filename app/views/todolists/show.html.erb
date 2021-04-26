@@ -11,14 +11,15 @@
     <p><%= complete.date %></p>
   <% end %>
 </div>
-
+<%# 
 <div class="new_complete">
-  <%= form_with model: @complete, url: todolist_completes_path(@list.id), local: true do |f| %>
-    <%= f.label :date %>
-    <%= f.date_field :date %>
-    <%= f.submit 'Complete' %>
-  <% end %>
-</div>
+  <%= form_with(model:[@list,@complete],local: true) do |f| %>
+   <%# <%= f.label :date %>
+   <%# <%= f.date_field :date %>
+   <%# <%= f.submit 'Complete' %>
+  <%#<% end %>
+<!--</div>-->
+
 
 <%= link_to "編集",edit_todolist_path(@list.id) %>
 <%= link_to "削除",todolist_path(@list.id),method: :delete,"data-confirm" => "本当に削除しますか？" %>

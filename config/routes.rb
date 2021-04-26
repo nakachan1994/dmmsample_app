@@ -2,6 +2,6 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'homes#top'
   resources :todolists do
-    resources :completes, only:[:create, :destroy]
+    resource :completes, only:[:create, :destroy]
   end
 end

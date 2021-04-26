@@ -1,9 +1,8 @@
 class CompletesController < ApplicationController
   def create
-    # list = List.find(params[:list_id])
-    complete = Complete.new(complete_params)
-    complete.list_id = params[:list_id]
-    complete.save
+    @complete = Complete.new(post_complete_params)
+    @complete.list_id = params[:list_id]
+    @complete.save
     redirect_to todolists_path
   end
 
@@ -12,7 +11,7 @@ class CompletesController < ApplicationController
 
   private
 
-  def complete_params
+  def post_complete_params
     params.require(:complete).permit(:date)
   end
 end

@@ -19,7 +19,7 @@ class TodolistsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    @complete = Complete.new
+   @complete = Complete.new
   end
 
   def edit
