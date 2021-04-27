@@ -12,24 +12,31 @@
 
   <body>
     <header class="bg-light">
-      <nav class="navbar navbar-light">
+      <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <div class="row">
-            <h1 class ="">All Lists</h1>
+            <h1 class ="p-3">
+              <%= link_to about_homes_path, class:"text-dark" do %>
+                All Lists
+              <% end %>
+            </h1>
           </div>
-          <div class="row">
-            <ul class ="nav-list">
-            <li class ="navbar-brand">
+          <buttuon class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </buttuon>
+          <div class="row col-lg-5 collapse navbar-collapse" id="navbarNav">
+            <ul class ="navbar-nav ml-aito navbar-brand">
+            <li class ="nav-item">
               <%= link_to root_path,  class: 'nav-link text-dark' do %>
                 <i class="fas fa-desktop">Top</i>
               <% end %>
             </li>
-            <li class="navbar-brand">
+            <li class="nav-item">
               <%= link_to todolists_path,  class: 'nav-link text-dark' do %>
                 <i class="fas fa-clipboard-list">Todolist</i>
               <% end %>
             </li>
-            <li class ="navbar-brand">
+            <li class ="nav-item">
               <%= link_to new_todolist_path,  class: 'nav-link text-dark' do %>
                 <i class="fas fa-folder-plus">New List</i>
               <% end %>
