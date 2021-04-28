@@ -1,13 +1,22 @@
-<div class = "list-wrap">
-  <% @lists.each do |list| %>
-    <div class = "list-box">
-      <%= link_to todolist_path(list.id) do %>
-        <%= attachment_image_tag list, :image, :fill,200,200,format: 'jpeg', fallback: 'no-image.png',size:'200x200' %>
-      <% end %>
-      <div class = "list-comment">
-        <span class = "list-body"><%= list.body %></span>
-        <span class = "list-title"><%= link_to list.title, todolist_path(list.id) %></span>
+<div class="container">
+  <div class="row">
+    <div class="col-2 bg-info">
+      <p>便利機能</p>
+    </div>
+    <div class="col-10">
+      <div class = "list-wrap">
+        <% @lists.each do |list| %>
+          <div class = "list-box">
+            <%= link_to todolist_path(list.id) do %>
+              <%= attachment_image_tag list, :image, :fill,200,200,format: 'jpeg', fallback: 'no-image.png',size:'200x200' %>
+            <% end %>
+            <div class = "list-comment">
+              <span class = "list-body"><%= list.body %></span>
+              <span class = "list-title"><%= link_to list.title, todolist_path(list.id) %></span>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
