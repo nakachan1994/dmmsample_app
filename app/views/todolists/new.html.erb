@@ -7,7 +7,7 @@
       <div class="new-form">
         <h1>新規投稿</h1>
         <!--エラーメッセージ-->
-        <ul>
+        <ul class="alert alert-danger">
           <% if @list.errors.any? %>
             <%= @list.errors.count %>件のエラーが発生しました
               <% @list.errors.full_messages.each do |message| %>

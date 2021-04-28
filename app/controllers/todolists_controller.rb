@@ -38,7 +38,7 @@ class TodolistsController < ApplicationController
   def destroy
     list = List.find(params[:id])
     list.destroy
-    redirect_to todolists_path
+    redirect_to todolists_path, flash: {danger: 'Tosolistを削除しました'}
   end
 
   private
