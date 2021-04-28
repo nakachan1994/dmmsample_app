@@ -7,16 +7,18 @@
       <div class="edit-form">
         <h1>編集画面</h1>
       <!--エラーメッセージ-->
-      <ul class="alert alert-danger">
-        <% if @list.errors.any? %>
+
+      <% if @list.errors.any? %>
+        <ul class="alert alert-danger">
           <%= @list.errors.count %>件のエラーが発生しました
           <% @list.errors.full_messages.each do |message| %>
             <li>
               <%= message %>
             </li>
           <% end %>
-        <% end %>
-      </ul>
+        </ul>
+      <% end %>
+
 
       <%= form_with model:@list,url:"/todolists/#{@list.id}",local:true do |f| %>
         <h4>タイトル</h4>

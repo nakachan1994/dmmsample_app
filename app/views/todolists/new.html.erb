@@ -7,16 +7,16 @@
       <div class="new-form">
         <h1>新規投稿</h1>
         <!--エラーメッセージ-->
-        <ul class="alert alert-danger">
-          <% if @list.errors.any? %>
+        <% if @list.errors.any? %>
+          <ul class="alert alert-danger">
             <%= @list.errors.count %>件のエラーが発生しました
               <% @list.errors.full_messages.each do |message| %>
                 <li>
                   <%= message %>
                </li>
               <% end %>
-          <% end %>
-        </ul>
+          </ul>
+        <% end %>
 
         <!--form_with部分-->
         <%= form_with model: @list,url:'/todolists',local:true do |f| %>
