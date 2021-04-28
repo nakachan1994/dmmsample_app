@@ -1,25 +1,34 @@
 <%= flash[:notice] %>
-<h2>タイトル</h2>
-<p><%= @list.title %></p>
-<h2>本文</h2>
-<p><%= @list.body %></p>
-<h2>画像</h2>
-<%= attachment_image_tag @list,:image,:fill,300,300,format:'jpeg',fallback: 'no-image.png',size:'200x200' %>
+<div class="container">
+  <div class="row">
+    <div class="col-2 bg-info">
+      <%= render 'todolists/settings' %>
+    </div>
+    <div class="col-10">
+      <h2>タイトル</h2>
+      <p><%= @list.title %></p>
+      <h2>本文</h2>
+      <p><%= @list.body %></p>
+      <h2>画像</h2>
+      <%= attachment_image_tag @list,:image,:fill,300,300,format:'jpeg',fallback: 'no-image.png',size:'200x200' %>
 
-<div class="complete_date">
-  <% @list.completes.each do |complete| %>
-    <p><%= complete.date %></p>
-  <% end %>
+      <div class="complete_date">
+        <% @list.completes.each do |complete| %>
+          <p><%= complete.date %></p>
+        <% end %>
+      </div>
+      <%# completeエラー
+      <div class="new_complete">
+        <%= form_with(model:[@list,@complete],local: true) do |f| %>
+           <%# <%= f.label :date %>
+           <%# <%= f.date_field :date %>
+         <%# <%= f.submit 'Complete' %>
+        <%#<% end %>
+      <!--</div>-->
+
+
+      <%= link_to "編集",edit_todolist_path(@list.id) %>
+      <%= link_to "削除",todolist_path(@list.id),method: :delete,"data-confirm" => "本当に削除しますか？" %>
+    </div>
+  </div>
 </div>
-<%# completeエラー
-<div class="new_complete">
-  <%= form_with(model:[@list,@complete],local: true) do |f| %>
-   <%# <%= f.label :date %>
-   <%# <%= f.date_field :date %>
-   <%# <%= f.submit 'Complete' %>
-  <%#<% end %>
-<!--</div>-->
-
-
-<%= link_to "編集",edit_todolist_path(@list.id) %>
-<%= link_to "削除",todolist_path(@list.id),method: :delete,"data-confirm" => "本当に削除しますか？" %>
