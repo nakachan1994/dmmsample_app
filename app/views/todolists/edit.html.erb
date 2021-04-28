@@ -1,23 +1,33 @@
-<h1>編集画面</h1>
-<!--エラーメッセージ-->
-<ul>
-  <% if @list.errors.any? %>
-  <%= @list.errors.count %>件のエラーが発生しました
-    <% @list.errors.full_messages.each do |message| %>
-      <li>
-        <%= message %>
-       </li>
-    <% end %>
-  <% end %>
-</ul>
+<div class="container p-5">
+  <div class="row">
+    <div class="col-2 bg-info">
+      <%= render 'todolists/settings' %>
+    </div>
+    <div class="col-10 d-flex justify-content-center">
+      <div class="edit-form">
+        <h1>編集画面</h1>
+      <!--エラーメッセージ-->
+      <ul class="alert alert-danger">
+        <% if @list.errors.any? %>
+          <%= @list.errors.count %>件のエラーが発生しました
+          <% @list.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
 
-<%= form_with model:@list,url:"/todolists/#{@list.id}",local:true do |f| %>
-  <h4>タイトル</h4>
-  <%= f.text_field :title %>
-  <h4>本文</h4>
-  <%= f.text_area :body %>
-  <h4>画像</h4>
-  <%= f.attachment_field :image %>
-  <%= f.submit '保存' %>
-<% end %>
-
+      <%= form_with model:@list,url:"/todolists/#{@list.id}",local:true do |f| %>
+        <h4>タイトル</h4>
+        <%= f.text_field :title %>
+        <h4>本文</h4>
+        <%= f.text_area :body %>
+        <h4>画像</h4>
+        <%= f.attachment_field :image %><br>
+        <%= f.submit '保存', class:'btn btn-primary mt-3 float-right' %>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
